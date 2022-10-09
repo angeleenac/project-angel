@@ -1,0 +1,235 @@
+<div class="main-content">
+    <section class="section">
+      <div class="section-header">
+        <h1><%- title %></h1>
+        <div class="section-header-breadcrumb">
+          <%- include('../../layouts/partial/breadcrumb') %>
+        </div>
+      </div>
+  
+      <div class="section-body">
+        <h2 class="section-title">Table <%- title %></h2>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <i class="fas fa-user-tie"></i> &nbsp; Pengajuan Cuti
+              </div>
+              <div class="card-body">
+                <div class="mb-1">
+                  <a
+                    data-toggle="modal"
+                    data-target="#modalForm"
+                    href="#"
+                    class="btn btn-primary icon-left btn-icon mb-2 btn-add"
+                    ><i class="fas fa-plus"></i> Tambah
+                  </a>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label>Select data:</label>
+                      <select class="form-control select-limit">
+                        <option value="">-- Limit --</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-9">
+                    <div class="form-group w-50 ml-auto">
+                      <label>Pencarian:</label>
+                      <input
+                        type="text"
+                        class="form-control search"
+                        placeholder="Pencarian"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <span id="keterangan">
+                  Showing <span id="from"></span> to <span id="to"></span> of
+                  <span id="total"></span> Entries
+                </span>
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Jenis Cuti</th>
+                        <th>Nama Pegawai</th>
+                        <th>Tanggal Awal cuti</th>
+                        <th>Tanggal Akhir cuti</th>
+                        <th>Nama Pegawai Pengganti</th>
+                        <th>Catatan</th>
+                        <th>Nama Atasan</th>
+                        <th>Setuju</th>
+                        <th>Waktu Pengajuan</th>
+                        <th>Waktu Setuju</th>
+                        <th>Berkas</th>
+                        <th class="text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer text-right">
+                <div id="pagination"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="modalForm"
+    tabindex="-1"
+    aria-labelledby="modalFormLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFormLabel">Form Pengajuan Cuti</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form
+          action="/admin/pengajuanCuti"
+          method="post"
+          class="form-submit"
+          enctype="multipart/form-data"
+        >
+        <div class="modal-body">
+        <div id="error-form-submit"></div>
+            <input type="hidden" name="page" value="add" />
+            <input type="hidden" name="id_pengajuan_cuti" value="" />
+            <div class="form-group">
+              <label for="">Jenis Cuti</label>
+              <select name="id_jenis_cuti" class="form-control select2" id="">
+                <option value="">-- Jenis Cuti --</option>
+                <% dataJenisCuti.map((v,i) => { %>
+                <option value="<%- v.id_jenis_cuti %>"><%- v.jenis_cuti %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="">Nama Pegawai</label>
+                <select name="id_pegawai" class="form-control select2" id="">
+                  <option value="">-- Nama Pegawai --</option>
+                  <% dataPegawai.map((v,i) => { %>
+                  <option value="<%- v.id_pegawai %>"><%- v.nama_pegawai %></option>
+                  <% }) %>
+                </select>
+              </div>
+            <div class="form-group">
+              <label for="">Tanggal Awal Cuti</label>
+              <input
+                type="text"
+                class="form-control datepicker"
+                placeholder="Tanggal Awal Cuti"
+                name="tanggal_awal_cuti"
+                id="tanggal_awal_cuti"
+              />
+            </div>
+            <div class="form-group">
+              <label for="">Tanggal Akhir Cuti</label>
+              <input
+                type="text"
+                class="form-control datepicker"
+                placeholder="Tanggal Akhir Cuti"
+                name="tanggal_akhir_cuti"
+                id="tanggal_akhir_cuti"
+              />
+            </div>
+            <div class="form-group">
+                <label for="">ID Pegawai Pengganti</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ID Pegawai Pengganti"
+                  name="id_pegawai_pengganti"
+                  id="id_pegawai_pengganti"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="">Catatan</label>
+                <textarea
+                class="form-control"
+                placeholder="Catatan"
+                name="catatan"
+                rows="3"
+                id="catatan"
+                ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">ID Atasan</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ID Atasan"
+                  name="id_atasan"
+                  id="id_atasan"
+                />
+            </div>
+            <div class="form-group">
+                <label for="">Waktu Pengajuan</label>
+                <input
+                  type="text"
+                  class="form-control datepicker"
+                  placeholder="Waktu Pengajuan"
+                  name="waktu_pengajuan"
+                  id="waktu_pengajuan"
+                />
+              </div>
+              <div class="form-group">
+                <label for="">Waktu Setuju</label>
+                <input
+                  type="text"
+                  class="form-control datepicker"
+                  placeholder="Waktu Setuju"
+                  name="waktu_setuju"
+                  id="waktu_setuju"
+                />
+              </div>
+              <div class="form-group">
+                <label for="">Berkas</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="berkas"
+                  placeholder="Berkas"
+                  id="berkas"
+                />
+              </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              <i class="fas fa-window-close"></i> Close
+            </button>
+            <button type="button" class="btn btn-primary btn-submit">
+              <i class="fas fa-paper-plane"></i> Simpan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('./script') %>
+  

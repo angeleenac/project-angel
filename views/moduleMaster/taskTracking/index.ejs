@@ -1,0 +1,480 @@
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1><%- title %></h1>
+      <div class="section-header-breadcrumb">
+        <%- include('../../layouts/partial/breadcrumb') %>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <h2 class="section-title">Table <%- title %></h2>
+      <div class="card">
+        <div class="card-header">
+          <h4>Basic DataTables</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive overflow-hidden">
+            <div
+              id="table-1_wrapper"
+              class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"
+            >
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_length" id="table-1_length">
+                    <label
+                      >Show
+                      <select
+                        name="table-1_length"
+                        aria-controls="table-1"
+                        class="form-control form-control-sm"
+                      >
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>
+                      entries</label
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div
+                    id="table-1_filter"
+                    class="dataTables_filter float-right"
+                  >
+                    <label
+                      >Search:<input
+                        type="search"
+                        class="form-control form-control-sm"
+                        placeholder=""
+                        aria-controls="table-1"
+                    /></label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <table
+                    class="table table-striped dataTable no-footer"
+                    id="table-1"
+                    role="grid"
+                    aria-describedby="table-1_info"
+                  >
+                    <thead>
+                      <tr role="row">
+                        <th
+                          class="text-center sorting_asc"
+                          tabindex="0"
+                          aria-controls="table-1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-sort="ascending"
+                          aria-label="
+                              #
+                            : activate to sort column descending"
+                          style="width: 61.6562px"
+                        >
+                          #
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="table-1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Task Name: activate to sort column ascending"
+                          style="width: 256.125px"
+                        >
+                          Task Name
+                        </th>
+                        <th
+                          class="sorting_disabled"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Progress"
+                          style="width: 136.281px"
+                        >
+                          Progress
+                        </th>
+                        <th
+                          class="sorting_disabled"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Members"
+                          style="width: 338.281px"
+                        >
+                          Members
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="table-1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Due Date: activate to sort column ascending"
+                          style="width: 162.531px"
+                        >
+                          Due Date
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="table-1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Status: activate to sort column ascending"
+                          style="width: 192.453px"
+                        >
+                          Status
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="table-1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Action: activate to sort column ascending"
+                          style="width: 137.672px"
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr role="row" class="odd">
+                        <td class="sorting_1">1</td>
+                        <td>Create a mobile app</td>
+                        <td class="align-middle">
+                          <div
+                            class="progress"
+                            data-height="4"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="100%"
+                            style="height: 4px"
+                          >
+                            <div
+                              class="progress-bar bg-success"
+                              data-width="100%"
+                              style="width: 100%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Wildan Ahdian"
+                          />
+                        </td>
+                        <td>2018-01-20</td>
+                        <td>
+                          <div class="badge badge-success">Completed</div>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-secondary">Detail</a>
+                        </td>
+                      </tr>
+                      <tr role="row" class="even">
+                        <td class="sorting_1">2</td>
+                        <td>Redesign homepage</td>
+                        <td class="align-middle">
+                          <div
+                            class="progress"
+                            data-height="4"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="0%"
+                            style="height: 4px"
+                          >
+                            <div
+                              class="progress-bar"
+                              data-width="0"
+                              style="width: 0px"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Nur Alpiana"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Hariono Yusup"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Bagus Dwi Cahya"
+                          />
+                        </td>
+                        <td>2018-04-10</td>
+                        <td><div class="badge badge-info">Todo</div></td>
+                        <td>
+                          <a href="#" class="btn btn-secondary">Detail</a>
+                        </td>
+                      </tr>
+                      <tr role="row" class="odd">
+                        <td class="sorting_1">3</td>
+                        <td>Backup database</td>
+                        <td class="align-middle">
+                          <div
+                            class="progress"
+                            data-height="4"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="70%"
+                            style="height: 4px"
+                          >
+                            <div
+                              class="progress-bar bg-warning"
+                              data-width="70%"
+                              style="width: 70%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Rizal Fakhri"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Hasan Basri"
+                          />
+                        </td>
+                        <td>2018-01-29</td>
+                        <td>
+                          <div class="badge badge-warning">In Progress</div>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-secondary">Detail</a>
+                        </td>
+                      </tr>
+                      <tr role="row" class="even">
+                        <td class="sorting_1">4</td>
+                        <td>Input data</td>
+                        <td class="align-middle">
+                          <div
+                            class="progress"
+                            data-height="4"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="100%"
+                            style="height: 4px"
+                          >
+                            <div
+                              class="progress-bar bg-success"
+                              data-width="100%"
+                              style="width: 100%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Rizal Fakhri"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Isnap Kiswandi"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Yudi Nawawi"
+                          />
+                          <img
+                            alt="image"
+                            src="/image/avatar.png"
+                            class="rounded-circle"
+                            width="35"
+                            data-toggle="tooltip"
+                            title=""
+                            data-original-title="Khaerul Anwar"
+                          />
+                        </td>
+                        <td>2018-01-16</td>
+                        <td>
+                          <div class="badge badge-success">Completed</div>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-secondary">Detail</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div
+                    class="dataTables_info"
+                    id="table-1_info"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    Showing 1 to 4 of 4 entries
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div
+                    class="dataTables_paginate paging_simple_numbers float-right"
+                    id="table-1_paginate"
+                  >
+                    <ul class="pagination">
+                      <li
+                        class="paginate_button page-item previous disabled"
+                        id="table-1_previous"
+                      >
+                        <a
+                          href="#"
+                          aria-controls="table-1"
+                          data-dt-idx="0"
+                          tabindex="0"
+                          class="page-link"
+                          >Previous</a
+                        >
+                      </li>
+                      <li class="paginate_button page-item active">
+                        <a
+                          href="#"
+                          aria-controls="table-1"
+                          data-dt-idx="1"
+                          tabindex="0"
+                          class="page-link"
+                          >1</a
+                        >
+                      </li>
+                      <li
+                        class="paginate_button page-item next disabled"
+                        id="table-1_next"
+                      >
+                        <a
+                          href="#"
+                          aria-controls="table-1"
+                          data-dt-idx="2"
+                          tabindex="0"
+                          class="page-link"
+                          >Next</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalForm"
+  tabindex="-1"
+  aria-labelledby="modalFormLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFormLabel"></h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form
+        action="/admin/langganan"
+        method="post"
+        class="form-submit"
+        enctype="multipart/form-data"
+      >
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Waktu mulai</label>
+            <input
+              type="text"
+              class="form-control datepicker"
+              placeholder="Waktu mulai"
+              name="waktu_mulai"
+              id="waktu_mulai"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Waktu selesai</label>
+            <input
+              type="text"
+              class="form-control datepicker"
+              placeholder="Waktu selesai"
+              name="waktu_selesai"
+              id="waktu_selesai"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <i class="fas fa-window-close"></i> Close
+          </button>
+          <button type="button" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i> Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('./script') %>

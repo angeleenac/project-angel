@@ -1,0 +1,58 @@
+<aside id="sidebar-wrapper">
+  <div class="sidebar-brand">
+    <a href="index.html">Stisla</a>
+  </div>
+  <div class="sidebar-brand sidebar-brand-sm">
+    <a href="/admin/dashboard">St</a>
+  </div>
+  <ul class="sidebar-menu">
+    <li class="menu-header">Dashboard</li>
+    <li class="<%- currentUrl == '/admin/dashboard' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/dashboard">
+        <i class="fas fa-home"></i> <span>Dashboard</span></a
+      >
+    </li>
+    <li class="menu-header">Menu</li>
+    <li class="<%- currentUrl == '/admin/users' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/users">
+        <i class="fas fa-user-lock"></i> <span>Data user</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == '/admin/usersMapping' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/usersMapping">
+        <i class="fa-sharp fa-solid fa-user-tag"></i>
+        <span>Data User Mapping</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == '/admin/client' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/client">
+        <i class="fas fa-user-tie"></i> <span>Data client</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == '/admin/langganan' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/langganan">
+        <i class="fa-solid fa-money-bill"></i> <span>Data langganan</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == '/admin/pegawaiDashboard' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/pegawaiDashboard">
+        <i class="fa-sharp fa-solid fa-users"></i> <span>Pegawai</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == '/admin/taskTracking' ? 'active' : '' %>">
+      <a class="nav-link" href="/admin/taskTracking">
+        <i class="fa fa-tasks" aria-hidden="true"></i> <span>Task Tracking</span></a
+      >
+    </li>
+    <li class="<%- currentUrl == 'logout' ? 'active' : '' %>">
+      <a class="nav-link" href="/logout">
+        <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a
+      >
+    </li>
+  </ul>
+
+  <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+    <img src="/image/default.jpg" class="btn btn-primary btn-lg btn-block btn-icon-split mx-auto rounded" style="width: 150px;"></img>
+    </a>
+  </div>
+</aside>

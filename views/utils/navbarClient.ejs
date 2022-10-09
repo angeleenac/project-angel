@@ -1,0 +1,82 @@
+<div id="relative" style="position: relative">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light w-100"
+    style="position: relative; left: 0; right: 0"
+  >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li
+          class="nav-item <%- currentUrl ==`/admin/dashboardClient?client_id=${client_id}` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/dashboardClient?client_id=<%- client_id %>">
+            Dasbboard <%- currentUrl ==`/admin/dashboardClient?client_id=${client_id}` ?
+            `<span class="sr-only">(current)</span>` : '' %>
+          </a>
+        </li>
+        <li
+          class="nav-item <%- currentUrl ==`/admin/jadwal?client_id=${client_id}` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/jadwal?client_id=<%- client_id %>">
+            Jadwal <%- currentUrl ==`/admin/jadwal?client_id=${client_id}` ?
+            `<span class="sr-only">(current)</span>` : '' %>
+          </a>
+        </li>
+        <li
+          class="nav-item <%- currentUrl ==`/admin/cabang?client_id=${client_id}` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/cabang?client_id=<%- client_id %>">
+            Cabang <%- currentUrl ==`/admin/cabang?client_id=${client_id}` ? `
+            <span class="sr-only">(current)</span>` : '' %>
+          </a>
+        </li>
+        <li
+          class="nav-item <%- currentUrl ==`/admin/unit?client_id=${client_id}` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/unit?client_id=<%- client_id %>"
+            >Unit <%- currentUrl ==`/admin/unit?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a
+          >
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/pegawai?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/pegawai?client_id=<%- client_id %>">Pegawai  <%- currentUrl ==`/admin/pegawai?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/jabatan?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/jabatan?client_id=<%- client_id %>">Jabatan  <%- currentUrl ==`/admin/jabatan?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/jenisAbsensi?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/jenisAbsensi?client_id=<%- client_id %>">Jenis Absensi  <%- currentUrl ==`/admin/jenisAbsensi?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/jenisCuti?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/jenisCuti?client_id=<%- client_id %>">Jenis Cuti  <%- currentUrl ==`/admin/jenisCuti?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/jenisLembur?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/jenisLembur?client_id=<%- client_id %>">Jenis Lembur  <%- currentUrl ==`/admin/jenisLembur?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/komponenGaji?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/komponenGaji?client_id=<%- client_id %>">Komponen Gaji  <%- currentUrl ==`/admin/komponenGaji?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+        <li class="nav-item <%- currentUrl ==`/admin/pengajuanCuti?client_id=${client_id}` ? 'active' : '' %>">
+          <a class="nav-link" href="/admin/pengajuanCuti?client_id=<%- client_id %>">Pengajuan Cuti  <%- currentUrl ==`/admin/pengajuanCuti?client_id=${client_id}` ?
+            '<span class="sr-only">(current)</span>' : '' %></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

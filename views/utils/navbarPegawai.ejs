@@ -1,0 +1,42 @@
+<div id="relative" style="position: relative">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light w-100"
+    style="position: relative; left: 0; right: 0"
+  >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li
+          class="nav-item <%- currentUrl ==`/admin/pegawaiDashboard` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/pegawaiDashboard">
+            Dasbboard <%- currentUrl ==`/admin/pegawaiDashboard` ? `<span
+              class="sr-only"
+              >(current)</span
+            >` : '' %>
+          </a>
+        </li>
+        <li
+          class="nav-item <%- currentUrl ==`/admin/pegawaiJadwal` ? 'active' : '' %>"
+        >
+          <a class="nav-link" href="/admin/pegawaiJadwal">
+            Jadwal Pegawai <%- currentUrl ==`/admin/pegawaiJadwal` ? `<span
+              class="sr-only"
+              >(current)</span
+            >` : '' %></a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

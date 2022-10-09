@@ -1,0 +1,374 @@
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1><%- title %></h1>
+      <div class="section-header-breadcrumb">
+        <%- include('../../layouts/partial/breadcrumb') %>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <%- include('../../utils/navbarClient') %>
+      <h2 class="section-title">Table <%- title %></h2>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <i class="fas fa-user-tie"></i> &nbsp; Daftar tabel pegawai jadwal
+            </div>
+            <div class="card-body">
+              <div class="mb-1">
+                <a
+                  data-toggle="modal"
+                  data-target="#modalForm"
+                  href="#"
+                  class="btn btn-primary icon-left btn-icon mb-2 btn-add"
+                  ><i class="fas fa-plus"></i> Tambah
+                </a>
+              </div>
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label>Select data:</label>
+                    <select class="form-control select-limit">
+                      <option value="">-- Limit --</option>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="form-group w-50 ml-auto">
+                    <label>Pencarian:</label>
+                    <input
+                      type="text"
+                      class="form-control search"
+                      placeholder="Pencarian"
+                    />
+                  </div>
+                </div>
+              </div>
+              <span id="keterangan">
+                Showing <span id="from"></span> to <span id="to"></span> of
+                <span id="total"></span> Entries
+              </span>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>No. identitas</th>
+                      <th>Nama lengkap</th>
+                      <th>Jenis kelamin</th>
+                      <th>Tempat lahir</th>
+                      <th>Tanggal lahir</th>
+                      <th>No. kontak</th>
+                      <th>Email</th>
+                      <th>No. pegawai jadwal</th>
+                      <th class="text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer text-right">
+              <div id="pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalForm"
+  tabindex="-1"
+  aria-labelledby="modalFormLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFormLabel">Form Pegawai</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form
+        action="/admin/pegawai jadwal"
+        method="post"
+        class="form-submit"
+        enctype="multipart/form-data"
+      >
+        <div class="modal-body">
+          <div id="error-form-submit"></div>
+          <input type="hidden" name="page" value="add" />
+          <input type="hidden" name="id_pegawai jadwal" value="" />
+          <input type="hidden" name="id_absensi" value="1" />
+          <input type="hidden" name="id_client" value="<%- id_client %>" />
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Jenis identitas</label>
+                <input
+                  type="text"
+                  name="jenis_identitas"
+                  class="form-control"
+                  id="jenis_identitas"
+                  placeholder="Jenis identitas"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">No. identitas</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="No. identitas"
+                  name="no_identitas"
+                  id="no_identitas"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Nama lengkap</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nama lengkap"
+                  id="nama_lengkap"
+                  name="nama_lengkap"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Jenis kelamin</label> <br />
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="jenis_kelamin"
+                    id="jenis_kelamin1"
+                    value="L"
+                  />
+                  <label class="form-check-label" for="jenis_kelamin1"
+                    >Laki-laki</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="jenis_kelamin"
+                    id="jenis_kelamin2"
+                    value="P"
+                  />
+                  <label class="form-check-label" for="jenis_kelamin2"
+                    >Perempuan</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Tempat lahir</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Tempat lahir"
+                  id="tempat_lahir"
+                  name="tempat_lahir"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Tanggal lahir</label>
+                <input
+                  type="text"
+                  class="form-control datepicker"
+                  placeholder="Tanggal lahir"
+                  id="tanggal_lahir"
+                  name="tanggal_lahir"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Status perkawinan</label>
+                <select
+                  name="status_perkawinan"
+                  class="form-control"
+                  id="status_perkawinan"
+                >
+                  <option value="">-- Status Perkawinan --</option>
+                  <option value="kawin">Kawin</option>
+                  <option value="belum kawin">Belum Kawin</option>
+                  <option value="cerai hidup">Cerai Hidup</option>
+                  <option value="cerai mati">Cerai Mati</option>
+                  <option value="lainnya">Lainnya</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Agama</label>
+                <select name="agama" class="form-control" id="agama">
+                  <option value="">-- Status Perkawinan --</option>
+                  <option value="islam">Islam</option>
+                  <option value="kristen">Kristen</option>
+                  <option value="katolik">Katolik</option>
+                  <option value="hindu">Hindu</option>
+                  <option value="budha">Budha</option>
+                  <option value="lainnya">Lainnya</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="">Pendidikan</label>
+            <select name="pendidikan" class="form-control" id="pendidikan">
+              <option value="">-- Status Perkawinan --</option>
+              <option value="s1">S1</option>
+              <option value="s2">S2</option>
+              <option value="s3">S3</option>
+              <option value="d1">D1</option>
+              <option value="d2">D2</option>
+              <option value="d3">D3</option>
+              <option value="slta/sederajat">SLTA / SEDERAJAT</option>
+              <option value="sltp/sederajat">SLTP / SEDERAJAT</option>
+              <option value="sd">SD</option>
+              <option value="tidak sekolah">Tidak Sekolah</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="">Alamat domisili</label>
+            <textarea
+              class="form-control"
+              placeholder="Alamat domisili"
+              id="alamat_domisili"
+              name="alamat_domisili"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">Alamat KTP</label>
+            <textarea
+              class="form-control"
+              placeholder="Alamat KTP"
+              id="alamat_ktp"
+              name="alamat_ktp"
+            ></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">No. kontak 1</label>
+                <input
+                  class="form-control"
+                  placeholder="No. kontak 1"
+                  id="no_kontak1"
+                  name="no_kontak1"
+                  type="number"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">No. kontak 2</label>
+                <input
+                  class="form-control"
+                  placeholder="No. kontak 2"
+                  id="no_kontak2"
+                  name="no_kontak2"
+                  type="number"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="">Email</label>
+            <input
+              class="form-control"
+              placeholder="Email"
+              id="email"
+              name="email"
+              type="text"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">No. pegawai jadwal</label>
+            <input
+              class="form-control"
+              placeholder="No. pegawai jadwal"
+              id="no_pegawai jadwal"
+              name="no_pegawai jadwal"
+              type="number"
+            />
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Tanggal masuk</label>
+                <input
+                  class="form-control datepicker"
+                  placeholder="Tanggal masuk"
+                  id="tanggal_masuk"
+                  name="tanggal_masuk"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Tanggal keluar</label>
+                <input
+                  class="form-control datepicker"
+                  placeholder="Tanggal keluar"
+                  id="tanggal_keluar"
+                  name="tanggal_keluar"
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <i class="fas fa-window-close"></i> Close
+          </button>
+          <button type="button" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i> Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('./script') %>

@@ -1,0 +1,7 @@
+<% breadcrumb.map((v,i) => { %>
+<div class="breadcrumb-item <%- v.isActive %>">
+  <% if(v.isActive == 'active') { %> <%- v.label %> <% } else { %>
+  <a href="<%- v.url %>"><%- v.label %></a>
+  <% } %>
+</div>
+<% }); %>

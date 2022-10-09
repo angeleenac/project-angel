@@ -1,0 +1,242 @@
+<script>
+  $(document).ready(function () {
+    loadTable();
+    function loadTable(page = null, limit = null, search = null) {
+      $.ajax({
+        url: "/admin/jenisCuti",
+        dataType: "json",
+        type: "get",
+        data: {
+          page: page,
+          limit: limit,
+          search: search,
+          client_id: "<%- id_client %>",
+        },
+        success: function (dataResult) {
+          const {
+            output: {
+              data,
+              pagination: { pagination },
+            },
+          } = dataResult;
+
+          let output = ``;
+
+          let no = 1;
+          data.map((v, i) => {
+            output += `
+            <tr>
+              <td>${no++}</td>
+              <td>${v.jenis_cuti}</td>
+              <td>${v.saldo}</td>
+              <td>${
+                v.is_aktif == 1
+                  ? '<span class="badge badge-success">Aktif</span>'
+                  : '<span class="badge badge-danger">Tidak aktif</span>'
+              }</td>
+              <td>
+                <div class="text-center">
+                  <a class="btn btn-warning btn-edit btn-sm" data-id="${
+                    v.id_jenis_cuti
+                  }" href="/admin/jenisCuti/${
+              v.id_jenis_cuti
+            }/edit"><i class="fas fa-pencil-alt"></i> </a>
+                  <a class="btn btn-danger btn-sm btn-delete" data-id="${
+                    v.id_jenis_cuti
+                  }" href="/admin/jenisCuti/${
+              v.id_jenis_cuti
+            }/delete"><i class="fas fa-trash"></i> </a>
+                </div>
+              </td>
+            </tr>
+            `;
+          });
+          $("#dataTable").find("tbody").html(output);
+
+          // pagination
+          const { buttonNext, buttonPrev, linkButtonNext, linkButtonPrev } =
+            dataResult.output.pagination;
+          let paginationButton = ` <nav class="d-inline-block">
+          <ul class="pagination mb-0">
+            <li class="page-item ${buttonPrev == false ? "disabled" : ""}">
+              <a class="page-link" href="#" data-page="${linkButtonPrev}" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+            </li>`;
+          let span = ``;
+          pagination.map((v, i) => {
+            if (v.active == "active") {
+              span = `<span class="sr-only">(current)</span>`;
+            }
+            paginationButton += `
+                  <li class="page-item ${v.active}">
+                    <a class="page-link" href="#" data-page="${v.page}">${v.page} ${span}</a>
+                  </li>
+            `;
+          });
+          paginationButton += `
+          <li class="page-item ${buttonNext == false ? "disabled" : ""}">
+          <a class="page-link" href="#" data-page="${linkButtonNext}"><i class="fas fa-chevron-right"></i></a>
+        </li>
+      </ul>
+    </nav>`;
+
+          $("#pagination").html(paginationButton);
+
+          const { keterangan } = dataResult.output;
+          $("#keterangan").find("#from").html(keterangan.from);
+          $("#keterangan").find("#to").html(keterangan.to);
+          $("#keterangan").find("#total").html(keterangan.total);
+        },
+        error: function (x, t, m) {
+          console.log(x.responseText);
+        },
+      });
+    }
+
+    $(document).on("click", ".page-link", function (e) {
+      e.preventDefault();
+      let page = $(this).data("page");
+      let limit = $(".select-limit").val();
+      let search = $(".search").val();
+      loadTable(page, limit, search);
+    });
+
+    $(document).on("change", ".select-limit", function () {
+      let limit = $(this).val();
+      let page = $(".page-item.active").find("a.page-link").data("page");
+      loadTable(page, limit);
+    });
+
+    $(document).on("input", ".search", function (e) {
+      e.preventDefault();
+      let search = $(this).val();
+      let limit = $(".select-limit").val();
+      loadTable(null, limit, search);
+    });
+
+    $(document).on("click", ".btn-add", function (e) {
+      e.preventDefault();
+      $('input[name="page"]').val("add");
+      $(".form-submit")[0].reset();
+      resetForm();
+    });
+
+    function resetForm() {
+      $("#error-form-submit").html("");
+      $(".form-submit").trigger("reset");
+    }
+
+    $(document).on("click", ".btn-submit", function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/admin/jenisCuti",
+        method: "post",
+        type: "post",
+        data: $(".form-submit").serialize(),
+        dataType: "json",
+        success: function (data) {
+          if (data.status == 200) {
+            Swal.fire({
+              icon: "success",
+              title: "Successfully",
+              text: data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            $("#modalForm").modal("hide");
+            loadTable();
+            resetForm();
+          }
+
+          if (data.status == 400) {
+            Swal.fire({
+              icon: "error",
+              title: "Failed",
+              text: data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            $("#modalForm").modal("hide");
+            loadTable();
+          }
+        },
+        error: function (x, t, m) {
+          console.log(x.responseJSON);
+          const { result } = x.responseJSON;
+          let output = ``;
+          if (result.map != "") {
+            result.map((v, i) => {
+              output += `
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Fail!</strong> ${v.msg}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            `;
+            });
+          }
+
+          $("#error-form-submit").html(output);
+        },
+      });
+    });
+
+    $(document).on("click", ".btn-edit", function (e) {
+      e.preventDefault();
+      const id = $(this).data("id");
+      const action = $(this).attr("href");
+      $.ajax({
+        url: action,
+        method: "get",
+        dataType: "json",
+        success: function (data) {
+          const { result } = data;
+          $('input[name="id_jenis_cuti"]').val(result.id_jenis_cuti);
+          $('input[name="jenis_cuti"]').val(result.jenis_cuti);
+          $('input[name="saldo"]').val(result.saldo);
+
+          $("#modalForm").modal().show();
+          $('input[name="page"]').val("edit");
+        },
+        error: function (x, t, m) {
+          console.log(x.responseText);
+        },
+      });
+    });
+
+    $(document).on("click", ".btn-delete", function (e) {
+      e.preventDefault();
+      const action = $(this).attr("href");
+      Swal.fire({
+        title: "Deleted",
+        text: "Yakin ingin menghapus item ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: action,
+            dataType: "json",
+            type: "get",
+            success: function (data) {
+              if (data.status == 200) {
+                Swal.fire("Deleted!", data.message, "success");
+                loadTable();
+              } else {
+                Swal.fire("Error!", data.message, "error");
+              }
+            },
+            error: function (x, t, m) {
+              console.log(x.responseText);
+            },
+          });
+        }
+      });
+    });
+  });
+</script>
